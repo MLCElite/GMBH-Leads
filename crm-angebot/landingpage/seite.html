@@ -1,0 +1,184 @@
+<title>CRM in 14 Tagen</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Ein CRM, das genau so arbeitet wie Ihr Betrieb. Ein Gespräch, 14 Tage, Festpreis.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: eine ruhige Lesespalte wie ein sauber geführter Aktenvermerk; das einzig Laute ist der Textmarker und der 14-Tage-Streifen. */
+:root{
+  --bg:#f3f6f7; --surface:#ffffff; --ink:#10282f; --muted:#52686e; --line:#d3dde0;
+  --petrol:#0d5c63; --petrol-ink:#ffffff; --marker:#ffe45c; --marker-ink:#10282f;
+  --display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0c1b20; --surface:#13272d; --ink:#e8f0f1; --muted:#9db1b6; --line:#27424a;
+  --petrol:#58c2ca; --petrol-ink:#06262a; --marker:#f2d544; --marker-ink:#10282f; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#0c1b20; --surface:#13272d; --ink:#e8f0f1; --muted:#9db1b6; --line:#27424a;
+  --petrol:#58c2ca; --petrol-ink:#06262a; --marker:#f2d544; --marker-ink:#10282f; color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;margin:0}
+.wrap{max-width:980px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);line-height:1.08;text-wrap:balance;margin:0;letter-spacing:-.015em}
+h1{font-size:clamp(2.3rem,6.4vw,4.3rem);font-weight:700}
+h2{font-size:clamp(1.6rem,3.6vw,2.4rem);font-weight:700}
+h3{font-size:1.15rem;font-weight:700;letter-spacing:0}
+p{margin:0;max-width:62ch}
+mark{background:linear-gradient(transparent 12%,var(--marker) 12%,var(--marker) 90%,transparent 90%);color:var(--marker-ink);padding:0 .14em;border-radius:2px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+a{color:var(--petrol)}
+a:focus-visible,.btn:focus-visible{outline:3px solid var(--marker);outline-offset:3px}
+
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:20px}
+.brand{font-family:var(--display);font-weight:700;font-size:1.1rem}
+.brand span{color:var(--petrol)}
+.btn{display:inline-block;background:var(--petrol);color:var(--petrol-ink);font-weight:600;text-decoration:none;padding:.8em 1.25em;border-radius:6px}
+.btn.small{padding:.5em .9em;font-size:.92rem}
+
+.hero{padding-block:clamp(28px,6vw,64px) clamp(36px,6vw,64px);display:flex;flex-direction:column;gap:24px}
+.hero .lead{font-size:1.2rem;color:var(--muted)}
+.cta-row{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.cta-row small{color:var(--muted);font-size:.92rem}
+
+section{padding-block:clamp(36px,6vw,64px);border-top:1px solid var(--line);display:flex;flex-direction:column;gap:24px}
+.eyebrow{font-size:.78rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--petrol)}
+
+.thoughts{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px 32px}
+.thoughts li{padding:12px 0;border-bottom:1px dashed var(--line);font-size:1.05rem}
+.thoughts li::before{content:"„";font-family:var(--display);color:var(--petrol);font-weight:700}
+.thoughts li::after{content:"“";font-family:var(--display);color:var(--petrol);font-weight:700}
+
+/* 14-Tage-Streifen */
+.strip-scroll{overflow-x:auto;padding-bottom:6px}
+.strip{display:grid;grid-template-columns:repeat(14,minmax(46px,1fr));gap:4px;min-width:700px}
+.day{font-variant-numeric:tabular-nums;text-align:center;font-size:.8rem;color:var(--muted);padding-bottom:4px}
+.phase{grid-row:2;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 10px 12px;font-size:.86rem;line-height:1.35;min-width:0}
+.phase b{display:block;font-family:var(--display);font-size:.98rem;margin-bottom:2px}
+.phase.live{background:var(--marker);color:var(--marker-ink);border-color:var(--marker)}
+.p1{grid-column:1/2}.p2{grid-column:2/4}.p3{grid-column:4/11}.p4{grid-column:11/13}.p5{grid-column:13/14}.p6{grid-column:14/15}
+.p1 b,.p5 b,.p6 b{font-size:.82rem}
+.p1,.p5,.p6{font-size:.74rem;padding-inline:6px}
+
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:28px 36px}
+.cols > div{display:flex;flex-direction:column;gap:8px;min-width:0}
+.cols p{color:var(--muted)}
+
+.price{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:clamp(20px,4vw,36px);display:flex;flex-direction:column;gap:16px}
+.checks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.checks li{padding-left:1.6em;position:relative;max-width:62ch}
+.checks li::before{content:"✓";position:absolute;left:0;color:var(--petrol);font-weight:700}
+
+details{border-bottom:1px solid var(--line);padding-block:14px}
+details summary{cursor:pointer;font-weight:600;font-size:1.05rem}
+details p{margin-top:8px;color:var(--muted)}
+
+.final{background:var(--petrol);color:var(--petrol-ink);border-radius:10px;padding:clamp(24px,5vw,48px);display:flex;flex-direction:column;gap:18px;border:0;margin-block:clamp(24px,5vw,56px)}
+.final .btn{background:var(--marker);color:var(--marker-ink);align-self:flex-start}
+.final .contact{font-size:.95rem;opacity:.9;user-select:all}
+footer{color:var(--muted);font-size:.88rem;padding-block:24px 40px;display:flex;gap:20px;flex-wrap:wrap}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand">CRM in <span>14 Tagen</span></div>
+    <a class="btn small" href="#termin">Erstgespräch buchen</a>
+  </header>
+
+  <div class="hero">
+    <h1>Ein CRM, das so arbeitet <mark>wie Ihr Betrieb</mark>. In 14&nbsp;Tagen fertig.</h1>
+    <p class="lead">Wir setzen uns einmal zusammen. Sie zeigen mir, wie ein Auftrag bei Ihnen vom ersten Anruf bis zur Rechnung läuft. Zwei Wochen später arbeitet Ihr Team in einem System, das genau diesen Ablauf abbildet.</p>
+    <div class="cta-row">
+      <a class="btn" href="#termin">Kostenloses Erstgespräch (30 Min.)</a>
+      <small>Festpreis vor dem Start. Kein Abo-Zwang, keine Lizenz pro Benutzer.</small>
+    </div>
+  </div>
+
+  <section>
+    <div class="eyebrow">Kommt Ihnen das bekannt vor?</div>
+    <h2>„Das müsste doch einfacher gehen.“</h2>
+    <ul class="thoughts">
+      <li>Wo steht dieser Kunde gerade?</li>
+      <li>Wer ruft da eigentlich zurück?</li>
+      <li>Das steht in der Excel-Liste von der Kollegin.</li>
+      <li>Den Termin hat mir niemand gesagt.</li>
+      <li>Wir haben ein CRM, aber keiner trägt etwas ein.</li>
+      <li>Die Auswertung mache ich am Sonntag selbst.</li>
+    </ul>
+    <p>Zehn Jahre lang war ich Assistenz der Geschäftsführung. Ich war die Person, bei der diese Fragen landen. Fertige CRM-Systeme lösen sie selten, weil sich das Team an die Software anpassen muss. Ich baue es umgekehrt.</p>
+  </section>
+
+  <section>
+    <div class="eyebrow">Ablauf</div>
+    <h2>Von Ihrem Gespräch bis zum Start: 14 Tage</h2>
+    <div class="strip-scroll">
+      <div class="strip" role="img" aria-label="Zeitplan: Tag 1 Gespräch, Tag 2 bis 3 Ablaufplan, Tag 4 bis 10 Aufbau, Tag 11 bis 12 Test mit dem Team, Tag 13 Einschulung, Tag 14 Start">
+        <div class="day">1</div><div class="day">2</div><div class="day">3</div><div class="day">4</div><div class="day">5</div><div class="day">6</div><div class="day">7</div><div class="day">8</div><div class="day">9</div><div class="day">10</div><div class="day">11</div><div class="day">12</div><div class="day">13</div><div class="day">14</div>
+        <div class="phase p1"><b>Gespräch</b>bei Ihnen</div>
+        <div class="phase p2"><b>Ablaufplan</b>Sie geben ihn schriftlich frei</div>
+        <div class="phase p3"><b>Aufbau</b>Ihr CRM entsteht. Sie sehen zur Halbzeit den Zwischenstand und können korrigieren.</div>
+        <div class="phase p4"><b>Test im Team</b>mit echten Fällen</div>
+        <div class="phase p5"><b>Schulung</b>je Rolle</div>
+        <div class="phase p6 live"><b>Start</b>live</div>
+      </div>
+    </div>
+    <p>Sie investieren rund vier Stunden: das Gespräch, die Freigabe, den Test. Den Rest erledige ich.</p>
+  </section>
+
+  <section>
+    <div class="eyebrow">Was Sie bekommen</div>
+    <h2>Jede Abteilung sieht nur, was sie braucht</h2>
+    <div class="cols">
+      <div><h3>Eine Ansicht pro Rolle</h3><p>Telefon, Innendienst, Außendienst, Geschäftsführung: Jede Person öffnet das System und sieht ihre Aufgaben für heute.</p></div>
+      <div><h3>Nichts bleibt liegen</h3><p>Fehlt ein Termin oder eine Rückmeldung, entsteht automatisch eine Aufgabe bei der zuständigen Person.</p></div>
+      <div><h3>Termine und Wochenplan</h3><p>Verbunden mit dem Kalender, den Sie schon nutzen. Verschobene Termine fragen sofort nach dem neuen Datum.</p></div>
+      <div><h3>Zahlen ohne Sonntagsarbeit</h3><p>Pipeline, Abschlüsse und Team-Ziele stehen jederzeit aktuell da. Niemand muss Listen zusammentragen.</p></div>
+      <div><h3>Läuft überall</h3><p>Am PC, am iPad und am Handy im Browser. Keine Installation.</p></div>
+      <div><h3>Wächst mit</h3><p>Ändert sich Ihr Ablauf, ändere ich das System. Sie warten nicht auf das Update eines Herstellers.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Preis</div>
+    <h2>Offen gesagt: etwa die Hälfte, oft weniger</h2>
+    <div class="price">
+      <p>Eine individuelle CRM-Entwicklung über eine Agentur wird schnell sechsstellig und dauert Monate. Ich arbeite allein, mit einem erprobten Grundgerüst und aus Leidenschaft für gute Abläufe. Deshalb liege ich deutlich darunter.</p>
+      <ul class="checks">
+        <li>Festpreis, schriftlich, bevor Sie etwas unterschreiben</li>
+        <li>Keine Lizenzgebühr pro Benutzer</li>
+        <li>Betreuung und Anpassungen monatlich kündbar</li>
+        <li>Ihre Daten gehören Ihnen und sind jederzeit exportierbar</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Häufige Fragen</div>
+    <h2>Bevor Sie fragen</h2>
+    <div>
+      <details><summary>Wir haben schon ein CRM. Lohnt sich das trotzdem?</summary><p>Wenn Ihr Team es gern und vollständig nutzt: nein, dann bleiben Sie dabei. Wenn daneben Excel-Listen, Zettel und WhatsApp-Gruppen laufen, zeigt das Erstgespräch, wo es hakt.</p></details>
+      <details><summary>Was passiert mit unseren bestehenden Daten?</summary><p>Kunden und offene Vorgänge aus Excel oder Ihrem bisherigen System übernehme ich beim Aufbau, damit Sie am Starttag nicht bei null beginnen.</p></details>
+      <details><summary>Wie steht es um Datenschutz?</summary><p>Hosting in der EU, Zugriffsrechte je Rolle, regelmäßige Sicherungen und ein Auftragsverarbeitungsvertrag nach DSGVO gehören dazu.</p></details>
+      <details><summary>Und wenn in 14 Tagen nicht alles Platz hat?</summary><p>Im Ablaufplan legen wir fest, was am Tag 14 läuft. Das ist der Kern Ihres Tagesgeschäfts. Weitere Wünsche kommen danach schrittweise dazu.</p></details>
+    </div>
+  </section>
+
+  <div class="final" id="termin">
+    <h2>30 Minuten, in denen Sie mir Ihren Ablauf zeigen</h2>
+    <p>Danach wissen Sie, was in 14 Tagen möglich ist und was es kostet. Wenn es nicht passt, sage ich Ihnen das auch.</p>
+    <a class="btn" id="termin-link" href="#termin">Termin aussuchen</a>
+    <div class="contact" id="kontakt-zeile">[Buchungslink, E-Mail und Telefon hier eintragen]</div>
+  </div>
+
+  <footer>
+    <span>© 2026 CRM in 14 Tagen</span>
+    <span>[Impressum]</span>
+    <span>[Datenschutz]</span>
+  </footer>
+</div>
+
+<script>
+// Hier eintragen, dann ist die Seite einsatzbereit:
+var KONTAKT = { terminUrl: "", zeile: "" }; // z. B. terminUrl: "https://cal.com/…", zeile: "name@domain.at · +43 …"
+if (KONTAKT.terminUrl) { document.querySelectorAll('a[href="#termin"]').forEach(function(a){ if(a.id==="termin-link"){ a.href = KONTAKT.terminUrl; a.target="_blank"; a.rel="noopener"; } }); }
+if (KONTAKT.zeile) document.getElementById("kontakt-zeile").textContent = KONTAKT.zeile;
+</script>
